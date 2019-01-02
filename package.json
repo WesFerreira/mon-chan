@@ -1,0 +1,30 @@
+{
+  "name": "mon-chan",
+  "version": "0.0.1",
+  "author": "Wes Ferreira",
+  "description": "A pack with some gameDev .ts utils.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WesFerreira/mon-chan"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^3.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.3",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-typescript": "^3.2.3",
+    "gulp-uglify": "^3.0.0",
+    "typescript": "^2.8.3",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "@types/box2d": "0.0.33",
+    "@types/pixi.js": "^4.8.5",
+    "box2dweb": "^2.1.0-b",
+    "pixi.js": "^4.7.3"
+  }
+}
