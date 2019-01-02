@@ -1,4 +1,4 @@
-dist/core.min.js
-dist/core.min.js.map
+dev/core.min.js/
+dev/core.min.js.map/
 node_modules/
 js/
