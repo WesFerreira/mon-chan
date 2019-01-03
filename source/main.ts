@@ -109,7 +109,7 @@ document.body.onload = function () {
     app.stage.addChild(circle2);
 
     b2App.set.animation.timeStep(1 / 60);
-    b2App.animate();
+    b2App.applyPhysics();
 
     app.ticker.add(function (delta) {
         circle.x = circl.body.GetWorldCenter().x * 30;

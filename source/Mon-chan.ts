@@ -2,7 +2,7 @@
  * @Author: WesFerreira - https://github.com/WesFerreira
  * @Date: 2019-01-02 07:01:52
  * @Last Modified by: WesFerreira
- * @Last Modified time: 2019-01-02 07:59:09
+ * @Last Modified time: 2019-01-02 23:33:31
  */
 
 export namespace Mon {
@@ -49,13 +49,13 @@ export namespace Mon {
             private lineThickness = 1;
             private flags = Box2D.Dynamics.b2DebugDraw.e_shapeBit || Box2D.Dynamics.b2DebugDraw.e_jointBit;
 
-            public animate = () => {
+            public applyPhysics = () => {
                 this.world.Step(this.timeStep, this.velocityIterations, this.positionIterations);
 
                 this.world.ClearForces();
                 this.world.DrawDebugData();
 
-                setTimeout(this.animate, this.timeStep);
+                setTimeout(this.applyPhysics, this.timeStep);
             }
 
             constructor(options: B2AppOptions) {
