@@ -1,4 +1,6 @@
+import dependencyContainer, { initBox2App } from "./config/InversionOfControl";
 import { Mon } from "./Mon-chan";
+import { Box2AppService } from "./services/Box2AppService";
 
 /** Created by WesFerreira 22/12/18 */
 
@@ -12,7 +14,7 @@ let b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 // let world: Box2D.Dynamics.b2World;
 // 30 pixels on our canvas correspond to 1 meter in the box2d world
 let scale = 30;
-let b2App: Mon.Helpers.Box2App;
+let b2App: Box2AppService;
 
 function createFloor() {
     // A body definition holds all the data needed to construct a rigid body
@@ -75,7 +77,9 @@ document.body.onload = function () {
     let app = new PIXI.Application({ width: w, height: h, backgroundColor: 0x777777, antialias: true });
     document.body.appendChild(app.view);
     app.view.setAttribute("id", "pixi");
-    b2App = new Mon.Helpers.Box2App({ w: w, h: h, debug: true});
+
+    initBox2App({ w: w, h: h, debug: true });
+    b2App = dependencyContainer.resolve<Box2AppService>(Box2AppService);
 
     let floor = createFloor();
     let circl = createCircleBody();

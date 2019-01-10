@@ -2,16 +2,19 @@
  * @Author: WesFerreira - https://github.com/WesFerreira
  * @Date: 2019-01-02 07:01:52
  * @Last Modified by: WesFerreira
- * @Last Modified time: 2019-01-02 23:33:31
+ * @Last Modified time: 2019-01-03 01:30:29
  */
+
+import { injectable, inject } from "inversify";
 
 export namespace Mon {
     export namespace Helpers {
-        export class Box2App {
+        @injectable()
+        export class Box2App implements IBox2App {
             public world: Box2D.Dynamics.b2World;
             public scale = 30;
 
-            public set = {
+            public set: IBox2AppSetters = {
                 animation: {
                     positionIterations: (positionIterations: number) => {
                         this.positionIterations = positionIterations;
@@ -58,7 +61,8 @@ export namespace Mon {
                 setTimeout(this.applyPhysics, this.timeStep);
             }
 
-            constructor(options: B2AppOptions) {
+            constructor(@inject("B2AppOptions") options: B2AppOptions) {
+
                 this.w = options.w;
                 this.h = options.h;
 
@@ -96,7 +100,30 @@ export namespace Mon {
     }
 }
 
-interface B2AppOptions {
+//////////////////////////////////////////////////////////////////////////////////
+//                               INTERFACES                                     //
+//////////////////////////////////////////////////////////////////////////////////
+export interface IBox2App {
+    world: Box2D.Dynamics.b2World;
+    scale: number;
+    set: IBox2AppSetters;
+    applyPhysics: () => void;
+}
+
+export interface IBox2AppSetters {
+    animation: {
+        positionIterations: (positionIterations: number) => void,
+        timeStep: (timeStep: number) => void,
+        velocityIterations: (velocityIterations: number) => void,
+    };
+    debug: {
+        fillAlpha: (alpha: number) => void,
+        flags: (flags: number) => void,
+        lineThickness: (lineThickness: number) => void,
+    };
+}
+
+export interface B2AppOptions {
     debug?: boolean;
     gravity?: Box2D.Common.Math.b2Vec2;
     allowSleep?: boolean;
